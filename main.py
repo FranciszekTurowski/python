@@ -1,19 +1,18 @@
-def fibonacci(n):
+def fib_recur(n):
     if n <= 0:
-        raise ValueError("n musi być liczbą większą od 0")
+        return []
     elif n == 1:
-        return 0  # Pierwsza liczba Fibonacciego
+        return [0]
     elif n == 2:
-        return 1  # Druga liczba Fibonacciego
+        return [0, 1]
+    else:
+        seq = fib_recur(n - 1)
+        seq.append(seq[-1] + seq[-2])
+        return seq
 
-    a, b = 0, 1
-    for _ in range(2, n):
-        a, b = b, a + b
-    return b
+# Przykład użycia
+#Napisz program, który znajdzie n-tą liczbę Fibonacciego dla n > 0.
 
-# Przykład użycia:
-try:
-    n = int(input("Podaj wartość n (n > 0): "))
-    print(f"{n}-ta liczba Fibonacciego to: {fibonacci(n)}")
-except ValueError as e:
-    print(e)
+wyraz = int(input("Podaj wyraz który chcesz obliczyć: "))
+
+print("wynik to:",fib_recur(wyraz))
